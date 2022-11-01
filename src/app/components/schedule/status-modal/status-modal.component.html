@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h5 class="modal-title ml-auto pl-5" id="exampleModalLabel">
+        <span>{{config.title}}</span>
+    </h5>
+    <button type="button" class="close pull-right" (click)="onClose()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ng-template ngFor let-status [ngForOf]="allStatus">
+        <div class="form-check">
+            <input type="radio" name="mealAvailable" class="form-check-input" id="status{{status.status}}" [checked]="decideCheck(status.id, flight.currentStatus.id)" (click)="selectStatus(status.id, flight.flightCode)">
+            <label class="form-check-label" for="status{{status.status}}">{{status.status}}</label>
+        </div>
+    </ng-template>
+</div>
+<div class="modal-footer d-flex justify-content-center m-3">
+    <button type="submit" class="btn btn-primary" (click)="updateStatus()">{{config.save}}</button>
+    <button type="button" class="btn btn-dark btn-pill" (click)="onClose()">{{config.cancel}}</button>
+</div>

@@ -1,0 +1,23 @@
+.flight-status {
+    background-color: #198754;
+    border-radius: 30px;
+    min-width: 135px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 165px;
+}
+
+.action-link {
+    margin-right: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+}

@@ -1,0 +1,23 @@
+.action-link {
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.triangle-red {
+    border-top: solid 20px #dc3545;
+    border-left: solid 10px #dc3545;
+    border-right: solid 10px #dc3545;
+    border-bottom: solid 15px transparent;
+    z-index: 1;
+    right: 10px;
+}
+
+.triangle-green {
+    border-top: solid 20px #198754;
+    border-left: solid 10px #198754;
+    border-right: solid 10px #198754;
+    border-bottom: solid 15px transparent;
+    z-index: 1;
+    right: 10px;
+}

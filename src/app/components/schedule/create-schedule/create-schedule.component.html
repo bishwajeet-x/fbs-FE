@@ -1,0 +1,123 @@
+<div class="container bg-light mt-5">
+    <div class="text-end fixed-cta">
+        <a [routerLink]="['../']" class="nav-link fw-bold"><i class="bi bi-arrow-bar-left"></i> Back</a>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <form [formGroup]="scheduleForm" (submit)="doesSomething(scheduleForm.value)" style="width: 700px;" action="">
+            <div class="fs-5 fw-semibold mb-3 text-capitalize">{{action}} Schedule</div>
+            <div class="row">
+                <div class="col-6 pe-5" style="border-right: solid 1px #dedfe1;">
+                    <div class="col-12" *ngIf="action === 'create'">
+                        <div class="form-group">
+                            <label for="" class="form-label">Flight Code: </label>
+                            <input type="text" class="form-control" formControlName="flightCode" name="flightCode">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Airline: </label>
+                            <input [(ngModel)]="airline" name="airline" formControlName="airline"
+                                [typeahead]="fetchAllAirlineNames()"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="" class="form-label">Source: </label>
+                                            <input [(ngModel)]="source" name="source" formControlName="source"
+                                                [typeahead]="fetchAllAirportCodes()"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="" class="form-label">Destination: </label>
+                                            <input [(ngModel)]="destination" name="destination" formControlName="destination"
+                                                [typeahead]="fetchAllAirportCodes()"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Classes: </label>
+                                        <div class="form-check me-3">
+                                            <input type="checkbox" class="form-check-input" id="economy" [checked]="flightClassToggle.economy.added" (click)="selectClass('economy')">
+                                            <label class="form-check-label" for="economy">Economy</label>
+                                            <div class="input-group mb-3" *ngIf="flightClassToggle.economy.added">
+                                                <span class="input-group-text" id="basic-addon1">₹</span>
+                                                <input class="form-control" [value]="flightClassToggle.economy.fare" (keyup)="getFare($event, 'economy')" type="text">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-check me-3">
+                                            <input type="checkbox" class="form-check-input" id="business" [checked]="flightClassToggle.business.added" (click)="selectClass('business')">
+                                            <label class="form-check-label" for="business">Business</label>
+                                            <div class="input-group mb-3" *ngIf="flightClassToggle.business.added">
+                                                <span class="input-group-text" id="basic-addon1">₹</span>
+                                                <input class="form-control" [value]="flightClassToggle.business.fare" (keyup)="getFare($event, 'business')" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-5 ms-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">Scheduled for: </label>
+                                <input type="text"
+                                    class="form-control"
+                                    [minDate]="minDate"
+                                    [maxDate]="maxDate"
+                                    #dp="bsDatepicker"
+                                    bsDatepicker [(bsValue)]="myDateValue"
+                                    formControlName="scheduledFor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">STA:</label>
+                                <timepicker name="sta" formControlName="sta" [(ngModel)]="sta"></timepicker>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="" class="form-label">ETA:</label>
+                                <timepicker name="eta" formControlName="eta" [(ngModel)]="eta"></timepicker>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label for="" class="form-label">Flight Hours:</label>
+                                <input type="number" class="form-control" formControlName="flightHours" name="flightHours" id="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action text-end mt-3">
+                <button type="submit" class="btn btn-sm btn-success me-2">Submit</button>
+                <a [routerLink]="['../']"  class="btn btn-sm btn-default border">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

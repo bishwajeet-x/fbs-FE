@@ -1,0 +1,51 @@
+
+<div class="container bg-light mt-5">
+    <div class="text-end fixed-cta">
+        <a [routerLink]="['../']" class="nav-link fw-bold"><i class="bi bi-arrow-bar-left"></i> Back</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <main style="width: 400px;" class="bg-white py-5 px-5 rounded">
+            <div class="fs-5 fw-semibold mb-3 text-capitalize">{{action}} Airline</div>
+            <div class="form">
+                <form [formGroup]="airlineForm" (submit)="persistAirline()">
+                    <div class="form-group mb-3">
+                        <label for="airlineName" class="form-label">Enter Name</label>
+                        <input type="text" class="form-control" formControlName="airlineName" id="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="noOfSeats" class="form-label">No. of seats</label>
+                        <input type="number" class="form-control" formControlName="noOfSeats" id="">
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="">Meal available?</label>
+                        <div class="form-check">
+                        <input type="radio" name="mealAvailable" class="form-check-input" id="mealAvailableTrue" (click)="selectMeal(true)">
+                        <label class="form-check-label" for="mealAvailableTrue">Yes</label>
+                        </div>
+                        <div class="form-check">
+                        <input type="radio" name="mealAvailable" class="form-check-input" id="mealAvailableFalse" (click)="selectMeal(false)">
+                        <label class="form-check-label" for="mealAvailableFalse">No</label>
+                        </div>
+                    </div>
+    
+    
+                    <div class="mb-3" *ngIf="mealAvailable === true">
+                        <label for="">Meal type</label>
+                        <div class="d-flex mb-3">
+                            <div class="form-check me-3" *ngFor="let type of mealType">
+                                <input type="checkbox" class="form-check-input" id="mealType{{type.typeId}}" [checked]="commitCheck(type.typeId)" (click)="selectMealType(type.typeId)">
+                                <label class="form-check-label" for="mealType{{type.typeId}}">{{type.typeName}}</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-sm btn-primary me-2">Submit</button>
+                        <a [routerLink]="['../']"  class="btn btn-sm btn-default border">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>

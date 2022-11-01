@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+.fixed-cta {
+    position: fixed;
+	width: max-content;
+	min-width: 100px;
+    padding: 10px;
+	top: 25px;
+	right: 40px;
+	background-color: #212529;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+    z-index: 2;
+
+	a {
+		text-align: center;
+	}
+}
+
+.box-shadow {
+    box-shadow: 2px 2px 3px #999;
+}
+
+#toast-container > div {
+    opacity:1;
+}

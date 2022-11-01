@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="text-end fixed-cta">
+        <a [routerLink]="['create']" class="nav-link fw-bold">+ Add new airline</a>
+    </div>
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-light">
+        <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">
+            <span class="fs-5 fw-semibold">All Airlines</span>
+        </a>
+        <div *ngIf="allAirlines.length > 0">
+            <ng-template ngFor let-airline [ngForOf]="allAirlines">
+                <div class="list-group bg-light list-group-flush scrollarea mb-3 box-shadow rounded position-relative">
+                    <div class="position-absolute" [ngClass]="triangleClass(airline.airlineStatus.id)"></div>
+                    <div href="#" class="list-group-item py-3 lh-sm" aria-current="true">
+                        <div class="d-flex w-100">
+                            <div class="image-airplane">
+                                <img style="width: 40px;" src="assets/icons/airplane.gif" alt="">
+                            </div>
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1 ms-3">{{airline.airlineName}}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10 mb-1 small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum distinctio explicabo tempore blanditiis ullam numquam provident tempora perspiciatis quidem et non, facilis iusto nulla quo rerum eos saepe a voluptatem.</div>
+                            <div class="col-2" style="font-size: 13px;">
+                                <a class="d-block action-link mb-1 text-success" (click)="editAirline(airline)">
+                                    <i class="bi bi-pencil-fill me-2"></i>
+                                    Edit this airline</a>
+                                <a class="d-block action-link mb-1 text-danger" (click)="deleteAirline(airline.airlineId)">
+                                    <i class="bi bi-trash-fill me-2"></i>
+                                    Delete this airline</a>
+                                <a class="d-block action-link mb-1" (click)="updateStatus(airline)">
+                                    <i class="bi bi-gear-fill me-2"></i>
+                                    Change status</a>
+                            </div>
+                        </div>
+                        <span>
+                            <small><b>Meals: </b></small>
+                            <ng-template ngFor let-meal [ngForOf]="airline.mealType">
+                                <!-- <small class="badge mt-2 me-2" [ngClass]="badgeClass(meal.typeId)">{{meal.typeName}}</small> -->
+                                <img [src]="mealIcon(meal.typeId)" alt="" width="20px" style="margin-right: 5px;">
+                            </ng-template>
+                        </span> 
+                        <small><b>Capacity:</b> {{airline.noOfSeats}} seats</small>
+                        
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div *ngIf="allAirlines.length === 0" style="width: 100%">
+            <div class="d-flex flex-column align-items-center justify-content-center bg-white rounded" style="height: 200px; margin-top: 100px;">
+                <div>No airlines found!</div> 
+                <p>Please use the above button to navigate to the Add Airline page.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
