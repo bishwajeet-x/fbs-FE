@@ -54,6 +54,8 @@ export class ScheduleComponent implements OnInit {
           status: flight.status
         }
       })
+    }, err => {
+      this.toastr.error(`Oops something went wrong!`);
     })
   }
 
@@ -103,6 +105,8 @@ export class ScheduleComponent implements OnInit {
     if(confirm('Are you sure you want to delete this flight?')) {
       this.service.deleteSchedule(data).subscribe(() => {
         this.toastr.success("Flight deleted successfully!");
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       });
     } else {
       this.toastr.success("Action cancelled!");

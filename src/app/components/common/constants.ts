@@ -4,5 +4,10 @@ export const Constants = {
     DELAYED: {id: 103, status: "DELAYED"},
     CANCELLED: {id: 104, status: "CANCELLED"},
 
-    MODAL_CLOSE: 'modal-close'
+    MODAL_CLOSE: 'modal-close',
+
+    AUTH: 'auth',
+    AIRLINE: 'airline',
+    TICKET: 'ticket',
+    FLIGHT: 'flight'
 }

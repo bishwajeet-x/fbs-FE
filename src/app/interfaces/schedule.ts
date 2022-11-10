@@ -13,3 +13,10 @@ export interface Schedule {
     flightHours: number;
     status: Status
 }
+
+export interface SearchSchedule {
+    date: string;
+	source: string;
+	destination: string;
+	trip: string|null;
+}

@@ -1,0 +1,128 @@
+<div class="container px-5">
+    <h5 class="mb-3">Book Flight</h5>
+    <div class="row">
+        <div class="col-6">
+            <div class="flight-details p-3 bg-white">
+                <div class="flight-code d-flex">
+                    <h2 class="me-2 mb-0">{{_flight.flightCode}}</h2> 
+                    <span class="d-flex align-items-end pb-1 text-secondary">{{_flight.airline.airlineName}}</span>
+                </div>
+                <hr>
+                <div class="flight-route d-flex">
+                    <div class="source me-3">
+                        <small class="text-secondary">SOURCE</small>
+                        <div class="c-overflow">{{source}}</div>
+                    </div>
+                    <div class="destination">
+                        <small class="text-secondary">DESTINATION</small>
+                        <div class="c-overflow">{{destination}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flight-meal-type mt-3">
+                <div class="mb-3" *ngIf="_flight.airline.mealAvailable== true">
+                    <label for="">Meal type</label>
+                    <div class="d-flex mb-3">
+                        <div class="form-check me-3" *ngFor="let type of _flight.airline.mealType">
+                            <input type="radio" name="mealType" class="form-check-input" id="mealType{{type.typeId}}" (click)="selectMealType(type)">
+                            <label class="form-check-label" for="mealType{{type.typeId}}">{{type.typeName}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flight-class mt-3">
+                <label for="">Select Class</label>
+                <ng-template ngFor let-fc [ngForOf]="_flight.flightClass">
+                    <div class="form-check me-3">
+                        <input type="radio" name="mealAvailable" class="form-check-input" id="mealAvailableTrue" (click)="selectClass(fc)">
+                        <label class="form-check-label" for="mealAvailableTrue">{{fc.name}}</label>
+                        <span class="input-group-text" id="basic-addon1">₹ {{fc.fare}}</span>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="price mt-3" *ngIf="price !== 0">
+                <label for="">Fare: </label>
+                    ₹ {{price}} 
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <h5 class="mb-3">Add Passengers</h5>
+            <div class="list-group bg-white list-group-flush scrollarea mb-3 box-shadow">
+                <div class="passenger-item position-relative">
+                    <div class="passenger-form p-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" class="form-control form-control-sm" name="" id="name0" />
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Age</label>
+                                    <input type="number" class="form-control form-control-sm" name="" id="age0" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Gender</label>
+                                    <select class="form-control form-control-sm" name="" id="gender0">
+                                        <option value="none">Select a gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Email</label>
+                            <input type="email" class="form-control form-control-sm" name="" id="email0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- add more -->
+            <ng-template ngFor let-passenger [ngForOf]="passengers">
+                <div class="list-group bg-white list-group-flush scrollarea mb-3 box-shadow">
+                    <div class="passenger-item position-relative">
+                        <div class="position-absolute" style="top: 5px; right: 5px;">
+                            <button class="transparent-btn" (click)="removePassenger(passenger.index)"><i class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="passenger-form p-3">
+                            <div class="form-group">
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-sm" name="" id="name{{passenger.index}}" />
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Age</label>
+                                        <input type="number" class="form-control form-control-sm" name="" id="age{{passenger.index}}" />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Gender</label>
+                                        <select class="form-control form-control-sm" name="" id="gender{{passenger.index}}">
+                                            <option value="none">Select a gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <div class="text-end">
+                <button class="custom-btn rounded" (click)="addPassenger()">Add more members</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-cta text-center mt-3">
+        <button type="button" class="btn btn-success btn-md" (click)="bookTicket()">Book ticket</button>
+    </div>
+</div>

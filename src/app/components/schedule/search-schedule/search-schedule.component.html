@@ -1,9 +1,64 @@
 <div class="container">
 
     <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-light">
-        <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">
+        <!-- <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">
             <span class="fs-5 fw-semibold">All Flight Schedules</span>
-        </a>
+        </a> -->
+        <div class="search-schedule-box b-5 mt-3">
+            <div class="search-box d-flex align-items-center justify-content-between m-auto border-bottom pb-3 mb-3" style="width: 70%;">
+                <div class="source">
+                    <div class="from-iata text-center position-relative">
+                        <label for="from-iata" class="position-absolute" style="right: 83px; top: -6px;">FROM</label>
+                        <div id="from-iata" class="large-text text-success">{{sourceIATA}}</div>
+                    </div>
+                    <div class="from-tb">
+                        <input [(ngModel)]="source" name="source"
+                                                (typeaheadOnSelect)="onSourceSelection($event)"
+                                                [typeahead]="fetchAllAirportCodes()"
+                                                class="form-control"
+                                                autocomplete="off"
+                                                placeholder="From">
+                    </div>
+                </div>
+                <div class="flight-image">
+                    <img src="/assets/icons/transportation.png" style="width: 130px;" alt="">
+                </div>
+                <div class="destination">
+                    <div class="to-iata text-center position-relative">
+                        <label for="to-iata" class="position-absolute" style="right: 100px; top: -6px;">TO</label>
+                        <div id="to-iata" class="large-text text-success">{{destinationIATA}}</div>
+                    </div>
+                    <div class="to-tb">
+                        <input [(ngModel)]="destination" name="destination"
+                                                (typeaheadOnSelect)="onDestinationSelection($event)"
+                                                [typeahead]="fetchAllAirportCodes()"
+                                                class="form-control"
+                                                autocomplete="off"
+                                                placeholder="To">
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-box d-flex align-items-center justify-content-end m-auto pb-3 mb-3" style="width: 70%;">
+                <div>
+                    <label class="form-label" for="">Boarding On: </label>
+                    <div class="input-group">
+                        <input type="text"
+                        class="form-control w-20"
+                        [minDate]="minDate"
+                        [maxDate]="maxDate"
+                        #dp="bsDatepicker"
+                        bsDatepicker [(bsValue)]="myDateValue"
+                        placeholder="Boarding Date"
+                        style="width: 200px;">
+                        <button class="btn btn-sm btn-success px-3"
+                        (click)="searchFlights()"
+                        >Search</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>  
         <div class="px-3" *ngIf="allSchedules.length > 0">
             <ng-template ngFor let-flight [ngForOf]="allSchedules">
                 <div class="list-group bg-light list-group-flush scrollarea mb-3 box-shadow rounded position-relative">
@@ -32,11 +87,11 @@
                                 </div>
                                 <div class="d-flex p-3" style="border-right: solid 1px #c8c9ca;">
                                     <div class="me-4">
-                                        <small class="text-secondary">STA</small>
+                                        <small class="text-secondary">ETA</small>
                                         <div class="">{{flight.sta}}</div>
                                     </div>
                                     <div class="me-4">
-                                        <small class="text-secondary">ETA</small>
+                                        <small class="text-secondary">DEP</small>
                                         <div class="">{{flight.eta}}</div>
                                     </div>
                                     <div>
@@ -52,8 +107,10 @@
                                         </div>
                                     </ng-template>
                                 </div>
-                                <div class="pt-3 pb-0 px-3 d-flex flex-column">
-                                    
+                                <div class="pt-3 pb-0 px-3 d-flex flex-column justify-content-center">
+                                    <div class="flight-status-outline" style="padding: 9px;" (click)="navigateToBooking(flight)">
+                                        BOOK NOW
+                                    </div>
                                 </div>
                             </div>
                         </div>

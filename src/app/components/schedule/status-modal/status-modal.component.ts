@@ -45,6 +45,8 @@ export class StatusModalComponent implements OnInit {
     this.service.changeFlightStatus(this._putData).subscribe(() => {
       this.toastr.success('Status changed successfully!');
       this.onClose();
+    }, err => {
+      this.toastr.error(`Oops something went wrong!`);
     })
   }
 

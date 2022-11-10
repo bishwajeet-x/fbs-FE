@@ -18,6 +18,9 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { CreateScheduleComponent } from './components/schedule/create-schedule/create-schedule.component';
 import { StatusModalComponent } from './components/schedule/status-modal/status-modal.component';
 import { SearchScheduleComponent } from './components/schedule/search-schedule/search-schedule.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { TicketComponent } from './components/booking/ticket/ticket.component';
+import { TicketsHistoryComponent } from './components/booking/tickets-history/tickets-history.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { SearchScheduleComponent } from './components/schedule/search-schedule/s
     ScheduleComponent,
     CreateScheduleComponent,
     StatusModalComponent,
-    SearchScheduleComponent
+    SearchScheduleComponent,
+    BookingComponent,
+    TicketComponent,
+    TicketsHistoryComponent
   ],
   imports: [
     BrowserAnimationsModule,

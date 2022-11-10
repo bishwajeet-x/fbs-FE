@@ -1,0 +1,68 @@
+<div class="container px-5">
+    <div class="text-end fixed-cta">
+        <a [routerLink]="['/web/schedules/mybooking/history']" class="nav-link fw-bold"><i class="bi bi-arrow-bar-left"></i> Back</a>
+    </div>
+    <h5 class="mb-3">Ticket Details</h5>
+    <div class="row">
+        <div class="col-6">
+            <div class="flight-details p-3 bg-white">
+                <div class="flight-code d-flex position-relative">
+                    <h2 class="me-2 mb-0">{{_ticket.flight.flightCode}}</h2> 
+                    <span class="d-flex align-items-end pb-1 text-secondary">{{_ticket.flight.airline.airlineName}}</span>
+                    <span class="position-absolute flight-status text-white rounded py-0 px-2" [ngClass]="flightStatusColor(_ticket.flight.status.id)" style="top: 10px; right: 10px">{{_ticket.flight.status.status}}</span>
+                </div>
+                <hr>
+                <div class="flight-route d-flex justify-content-around">
+                    <div class="source me-3">
+                        <small class="text-secondary">SOURCE</small>
+                        <div class="c-overflow">{{_ticket.flight.source}}</div>
+                    </div>
+                    <div class="destination">
+                        <small class="text-secondary">DESTINATION</small>
+                        <div class="c-overflow">{{_ticket.flight.destination}}</div>
+                    </div>
+                    <div class="source me-3">
+                        <small class="text-secondary">ETA</small>
+                        <div class="c-overflow">{{eta}}</div>
+                    </div>
+                    <div class="destination">
+                        <small class="text-secondary">FARE</small>
+                        <div class="c-overflow">₹ {{_ticket.ticket.fare}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flight-details p-3 bg-white mt-3">
+                <small class="text-secondary">PNR:</small> {{_ticket.ticket.pnr}}
+                <br>
+                <small class="text-secondary">Class:</small> {{_ticket.ticket.flightClass}}
+                <br>
+                <small class="text-secondary">STATUS:</small> {{_ticket.ticket.status}}
+            </div>
+
+            <div class="flight-details p-3 bg-white mt-3">
+                <small class="text-secondary">EMAIL:</small> {{_ticket.ticket.email}}
+                <br>
+                <small class="text-secondary">MEAL:</small> {{_ticket.ticket.meal}}
+            </div>
+
+
+        </div>
+        
+        <div class="col-6">
+            <h5 class="mb-3">Passengers</h5>
+            <!-- add more -->
+            <ng-template ngFor let-passenger [ngForOf]="_ticket.passengers">
+                <div class="list-group bg-white list-group-flush scrollarea mb-2 box-shadow">
+                    <div class="form-group">
+                        <div class="px-3 py-2">{{passenger.name}}, {{passenger.age}}, ({{passenger.gender}})</div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <button *ngIf="canCancel === true" class="btn btn-warning" (click)="cancelTicket()">Cancel this ticket</button>
+    </div>
+</div>

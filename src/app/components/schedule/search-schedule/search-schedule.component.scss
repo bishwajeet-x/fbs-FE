@@ -21,3 +21,25 @@
     text-decoration: none;
     font-size: 12px;
 }
+
+.large-text {
+    font-size: 70px;
+}
+
+.flight-status-outline {
+    border: solid 1px #198754;
+    border-radius: 30px;
+    min-width: 135px;
+    color: #198754;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .5s;
+
+    &:hover {
+        background-color: #198754;
+        color: #fff;
+        transition: all .5s;
+    }
+}

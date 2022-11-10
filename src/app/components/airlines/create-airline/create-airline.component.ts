@@ -48,6 +48,8 @@ export class CreateAirlineComponent implements OnInit {
     this.service.fetchAirlineById(id).subscribe(data => {
       console.log(data)
       this.setDataToForm(data);
+    }, err => {
+      this.toastr.error(`Oops something went wrong!`);
     })
   }
 
@@ -94,6 +96,8 @@ export class CreateAirlineComponent implements OnInit {
       res => {
         this.toastr.success(`Airline added successfully!`);
         this.router.navigate(['/admin/airlines']);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       }
     )
   }
@@ -106,6 +110,8 @@ export class CreateAirlineComponent implements OnInit {
       res => {
         this.toastr.success(`Airline edited successfully!`);
         this.router.navigate(['/admin/airlines']);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       }
     )
   }
@@ -120,6 +126,8 @@ export class CreateAirlineComponent implements OnInit {
   fetchAllMealTypes = () => {
     this.service.fetchAllMealTypes().subscribe(data => {
       this.mealType = data;
+    }, err => {
+      this.toastr.error(`Oops something went wrong!`);
     })
   }
 

@@ -1,49 +1,58 @@
 <div class="d-flex">
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-success vh-100 position-fixed" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" style="width: 100%;">
-      <img src="/assets/icons/airline-logo.png" style="width: 75px;" alt="">
-      <span class="fs-5 ms-2" style="line-height: 25px;">flight booking system</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a [routerLink]="['admin/airlines']" class="nav-link text-white" aria-current="page">
-          <i class="bi bi-airplane"></i>
-          <span class="ms-3">Airline</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['admin/airlines/create']" class="nav-link text-white">
-          <i class="bi bi-plus-circle"></i>
-          <span class="ms-3">Add Airlines</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['admin/schedule']" class="nav-link text-white">
-          <i class="bi bi-list-nested"></i>
-          <span class="ms-3">Flight Schedule</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['admin/schedule/create']" class="nav-link text-white">
-          <i class="bi bi-plus-circle"></i>
-          <span class="ms-3">Create Schedule</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['admin/schedule/search']" class="nav-link text-white">
-          <i class="bi bi-binoculars"></i>
-          <span class="ms-3">Search Schedule</span>
-        </a>
-      </li>
-    </ul>
-    <hr>
-    <div class="d-flex justify-content-between fs-12">
-      <div class="username">Bishwajeet Mandal</div>
-      <div class="logout"> <i class="bi bi-box-arrow-left"></i> Logout</div>
+  <div *ngIf="showNav === true">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-success vh-100 position-fixed" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" style="width: 100%;">
+        <img src="/assets/icons/airline-logo.png" style="width: 75px;" alt="">
+        <span class="fs-5 ms-2" style="line-height: 25px;">flight booking system</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item" *ngIf="forAdmin === true">
+          <a [routerLink]="['admin/airlines']" class="nav-link text-white" aria-current="page">
+            <i class="bi bi-airplane"></i>
+            <span class="ms-3">Airline</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="forAdmin === true">
+          <a [routerLink]="['admin/airlines/create']" class="nav-link text-white">
+            <i class="bi bi-plus-circle"></i>
+            <span class="ms-3">Add Airlines</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="forAdmin === true">
+          <a [routerLink]="['admin/schedule']" class="nav-link text-white">
+            <i class="bi bi-list-nested"></i>
+            <span class="ms-3">Flight Schedule</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="forAdmin === true">
+          <a [routerLink]="['admin/schedule/create']" class="nav-link text-white">
+            <i class="bi bi-plus-circle"></i>
+            <span class="ms-3">Create Schedule</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="forAdmin === false">
+          <a [routerLink]="['web/schedules/search']" class="nav-link text-white">
+            <i class="bi bi-binoculars"></i>
+            <span class="ms-3">Search Schedule</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="forAdmin === false">
+          <a [routerLink]="['web/schedules/mybooking/history']" class="nav-link text-white">
+            <i class="bi bi-hourglass-bottom"></i>
+            <span class="ms-3">History</span>
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="d-flex justify-content-between fs-12">
+        <div class="username">Hello, {{user.name}}!</div>
+        <div class="logout"><a  (click)="doLogout()"> <i class="bi bi-box-arrow-left"></i> Logout</a></div>
+      </div>
     </div>
   </div>
-  <div class="pt-3" style="margin-left: 280px; width: 100%;">
+  
+  <div class="" [ngClass]="shift()">
     <router-outlet></router-outlet>
   </div>
 </div>

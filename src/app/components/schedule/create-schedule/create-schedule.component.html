@@ -56,7 +56,6 @@
                                             </div>
                                         </div>
 
-
                                         <div class="form-check me-3">
                                             <input type="checkbox" class="form-check-input" id="business" [checked]="flightClassToggle.business.added" (click)="selectClass('business')">
                                             <label class="form-check-label" for="business">Business</label>
@@ -90,14 +89,14 @@
                     <div class="row mt-3">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="" class="form-label">STA:</label>
+                                <label for="" class="form-label">ETA:</label>
                                 <timepicker name="sta" formControlName="sta" [(ngModel)]="sta"></timepicker>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="" class="form-label">ETA:</label>
+                                <label for="" class="form-label">DEP:</label>
                                 <timepicker name="eta" formControlName="eta" [(ngModel)]="eta"></timepicker>
                             </div>
                         </div>

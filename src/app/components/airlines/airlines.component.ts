@@ -56,6 +56,8 @@ export class AirlinesComponent implements OnInit {
       this.service.updateStatus(putData).subscribe(res => {
         this.fetchAllAirlines();
         this.toastr.success(`Status changed successfully!`);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       })
     } else {
       this.toastr.success(`Action cancelled!`)
@@ -67,6 +69,8 @@ export class AirlinesComponent implements OnInit {
       this.service.deleteAirline(id).subscribe(res => {
         this.fetchAllAirlines();
         this.toastr.success(`Airline deleted successfully!`);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       });
     } else {
       this.toastr.success(`Action cancelled!`)

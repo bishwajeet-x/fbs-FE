@@ -126,10 +126,14 @@ export class CreateScheduleComponent implements OnInit {
     if(this.action === 'create') {
       this.service.createSchedule(postData).subscribe(() => {
         this.toastr.success(`Schedule created successfully!`);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       })
     } else {
       this.service.editSchedule(postData).subscribe(() => {
         this.toastr.success(`Schedule edited successfully!`);
+      }, err => {
+        this.toastr.error(`Oops something went wrong!`);
       })
     }
     this.router.navigate(['/admin/schedule']);

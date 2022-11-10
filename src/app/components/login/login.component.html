@@ -1,10 +1,19 @@
-<div class="container">
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="card py-3 px-5 w-50 bg-light bg-gradient">
+<div class="container-fluid p-0">
+  <div class="navbar w-100 bg-success px-3">
+    <div class="logo d-flex align-items-center">
+      <img width="80px" src="assets/icons/airline-logo.png" alt="">
+      <div class="text-white">Flight Booking System</div>
+    </div>
+
+  </div>
+    <div class="d-flex justify-content-center align-items-center" style="height: 70vh">
+      <div class=" w-50">
+        <strong class="ms-3">Sign in</strong>
+        <div class="card py-3 px-5 bg-light bg-gradient">
             <form [formGroup]="loginForm" (ngSubmit)="doLogin(loginForm.value)">
                 <div class="mb-3">
                   <div class="form-group row fadeIn first mb-0">
-                    <div class="col-2 px-0 pb-2 align-bottom">
+                    <div class="col-2 px-0 pb-2 d-flex align-items-end justify-content-center">
                       <img class="logo-img" src="assets/images/user.png">
                     </div>
                     <div class="col-10 px-0">
@@ -22,7 +31,7 @@
                 </div>
       
                 <div class="form-group row fadeIn second mb-0">
-                  <div class="col-2 px-0 pb-2 align-bottom">
+                  <div class="col-2 px-0 pb-2 d-flex align-items-end justify-content-center">
                     <img class="logo-img" src="assets/images/password.png">
                   </div>
                   <div class="col-10 px-0">
@@ -49,5 +58,6 @@
                 </div>
               </form>
         </div>
+      </div>
     </div>
 </div>
